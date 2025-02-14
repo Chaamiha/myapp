@@ -1,14 +1,18 @@
 import React from 'react';
-import { View, Text, Image, TextInput, Button } from 'react-native';
+import { View, Text, Image, TextInput, Button, TouchableOpacity,ImageBackground } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import * as Icon from "react-native-feather"; 
+import { useNavigation } from "@react-navigation/native"
+
+
 function Login() {
+
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <View style={{ backgroundColor: '#ADD8E6', width: 350, height: 450, borderRadius: 20, padding: 20,}}>
-        <TextInput
+      <View style={{ backgroundColor: 'green', width: 350, height: 450, borderRadius: 20, padding: 20,}}>
+      <TextInput
           style={{ backgroundColor: 'white', borderRadius: 30, margin: 10, paddingLeft: 15 }}
-          placeholder="Enter your name"
+          placeholder="Enter Name"
           placeholderTextColor="red"
         />
         <TextInput
@@ -22,10 +26,11 @@ function Login() {
           placeholderTextColor="red"
           secureTextEntry={true}
         />
-        <TextInput
-          style={{ backgroundColor: 'white', borderRadius: 30, margin: 10, paddingLeft: 15 }}
-          placeholder="Reenter your password"
+         <TextInput
+          style={{ backgroundColor: 'white', borderRadius: 20, margin: 10, paddingLeft: 15 }}
+          placeholder="Re enter password"
           placeholderTextColor="red"
+          secureTextEntry={true}
         />
 
        
@@ -41,9 +46,20 @@ function Login() {
 
 
 function Sinin() {
-  return (
+  
+    
+
+  const navigation = useNavigation();
+ function GotoLogin() {
+    return(
+    navigation.navigate('b')
+    );
+  }
+return ( 
+   
+    <TouchableOpacity onPress={GotoLogin} >
     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-      {/* Text Section */}
+      
       <View style={{ width: 80, height: 60, marginLeft: 30 }}>
         <Text style={{ fontSize: 20, fontWeight: 'bold', color: 'black' }}>SIGN IN</Text>
       </View>
@@ -63,11 +79,15 @@ function Sinin() {
         }}
       >
       
-      <View style={{ backgroundColor: 'yellow', width: 50, height: 50, marginRight: 30,borderRadius:100,marginTop:-25, }}>
-     <Icon.Search width={80} height={28} color={'blue'} ></Icon.Search>
+      <View style={{ backgroundColor: 'yellow', width: 50, height: 50, marginRight: 30,borderRadius:100,marginTop:-25,justifyContent:"center",alignItems:"center" }}>
+      <Icon.ArrowRight width={80} height={28} color={'blue'} ></Icon.ArrowRight>
+
       </View>
       </View>
+   
     </View>
+    </TouchableOpacity>
+   
   );
 }
 
@@ -102,18 +122,21 @@ function BotomeSection() {
   );
 }
 
-export default function Login1() {
- return(<View style={{ flex: 1 }}>
+export default function SinupScreen() {
+ return(
      
-       <Text style={{ fontSize: 35, color: 'yellow', paddingTop: 130, paddingLeft: 40, fontWeight: '600' }}>
-         Welcome to sri lanka best traveling app
-       </Text>
+        <ImageBackground 
+           source={{ uri: "https://th.bing.com/th/id/OIP.Dm32-cKerld0-P_pN_op6wAAAA?w=195&h=261&rs=1&pid=ImgDetMain" }} 
+             style={{ flex: 1 }}
+           >
+             <Text style={{ fontSize: 28, color: 'yellow', paddingTop: 130, paddingLeft: 40, fontWeight: '600' }}>
+               Welcome to Sri Lanka's Apartment Cultivation App
+             </Text>
+       
+             <KeyboardAwareScrollView keyboardShouldPersistTaps="never">
+               <Login />
+             </KeyboardAwareScrollView>
+           </ImageBackground>
+        );
  
-       <KeyboardAwareScrollView keyboardShouldPersistTaps="never">
-    
-         <Login />
-         
-       </KeyboardAwareScrollView>
-       </View>
- );
 }
